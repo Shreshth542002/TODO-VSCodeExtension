@@ -19,7 +19,7 @@ function activate(context) {
     const getGitExtension = async () => {
         const gitExtension = await vscode.extensions.getExtension('vscode.git');
         if (gitExtension) {
-          gitExtension.exports.onCommit.addListener(async (commit) => {
+          gitExtension.exports.onDidCommit.addListener(async (commit) => {
             console.log("Shreshth");
           });
         } else {
