@@ -1,4 +1,3 @@
-// The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const { searchCommentsInDirectory } = require('./commentFinder');
@@ -17,23 +16,18 @@ const { searchCommentsInDirectory } = require('./commentFinder');
 function activate(context) {
 
 	const outputChannel = vscode.window.createOutputChannel('Comments Finder Channel');
-    
-    vscode.extensions.getExtension('vscode.git').activate().then(gitExtension => {
+    const getGitExtension = async () => {
+        const gitExtension = await vscode.extensions.getExtension('vscode.git');
         if (gitExtension) {
-            const api = gitExtension.getAPI(1);
-            if (api && api.onDidRunGitCommand) {
-                api.onDidRunGitCommand((command) => {
-                    if (command.command === 'commit') {
-                        console.log('TEST'); // Log "TEST" on commit
-                    }
-                });
-            } else {
-                console.error('onDidRunGitCommand function is not available.');
-            }
+          gitExtension.exports.onCommit.addListener(async (commit) => {
+            console.log("Shreshth");
+          });
         } else {
-            console.error('Git extension not found.');
+          console.warn("Git extension not found. Functionality might be limited.");
         }
-    });    
+      };
+    
+    getGitExtension();
 
     let disposable = vscode.commands.registerCommand('TODO.helloWorld', function () {
         // Show the output channel and append "Hello World" to it

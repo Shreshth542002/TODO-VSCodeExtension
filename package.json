@@ -30,7 +30,7 @@
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1"
   },
-  "dependencies": {
-    "vscode.git": "*"
-  }
+  "extensionDependencies": [
+    "vscode.git"
+  ]
 }
