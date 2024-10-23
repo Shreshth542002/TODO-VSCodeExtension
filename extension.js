@@ -22,6 +22,9 @@ function activate(context) {
     api?.onDidChangeState((e) => {
       if (api.state == "initialized") {
         console.log("WORKinitialized")
+        api.repositories[0].onDidCommit((e) => {
+          console.log("committed")
+        })
       }
     })
     console.log("TEST", api);
