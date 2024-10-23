@@ -22,9 +22,17 @@ function activate(context) {
     api?.onDidChangeState((e) => {
       if (api.state == "initialized") {
         console.log("WORKinitialized")
-        api.repositories[0].onDidCommit((e) => {
-          console.log("committed")
-        })
+        if (api.repositories.length > 0) {
+          api.repositories[0].onDidChangeRepository(() => {
+            console.log("Repository changed");
+          });
+    
+          api.repositories[0].onDidCommit(() => {
+            console.log("committed");
+          });
+        } else {
+          console.warn("No repositories available yet");
+        }
       }
     })
     console.log("TEST", api);
