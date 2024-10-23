@@ -15,19 +15,17 @@ const { searchCommentsInDirectory } = require('./commentFinder');
  */
 function activate(context) {
 
-	const outputChannel = vscode.window.createOutputChannel('Comments Finder Channel');
-    const getGitExtension = async () => {
-        const gitExtension = await vscode.extensions.getExtension('vscode.git');
-        if (gitExtension) {
-          gitExtension.exports.onDidCommit.addListener(async (commit) => {
-            console.log("Shreshth");
-          });
-        } else {
-          console.warn("Git extension not found. Functionality might be limited.");
-        }
-      };
+	  const outputChannel = vscode.window.createOutputChannel('Comments Finder Channel');
+    const gitExtension = vscode.extensions.getExtension('vscode.git')?.exports;
     
-    getGitExtension();
+    const api = gitExtension?.getAPI(1);
+    api?.onDidChangeState((e) => {
+      if (api.state == "initialized") {
+        console.log("WORKinitialized")
+      }
+    })
+    console.log("TEST", api);
+    
 
     let disposable = vscode.commands.registerCommand('TODO.helloWorld', function () {
         // Show the output channel and append "Hello World" to it
