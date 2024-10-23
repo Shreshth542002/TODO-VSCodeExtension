@@ -21,13 +21,19 @@ function activate(context) {
     vscode.extensions.getExtension('vscode.git').activate().then(gitExtension => {
         if (gitExtension) {
             const api = gitExtension.getAPI(1);
-            api.onDidRunGitCommand((command) => {
-                if (command.command === 'commit') {
-                    console.log('TEST'); // Log "TEST" on commit
-                }
-            });
+            if (api && api.onDidRunGitCommand) {
+                api.onDidRunGitCommand((command) => {
+                    if (command.command === 'commit') {
+                        console.log('TEST'); // Log "TEST" on commit
+                    }
+                });
+            } else {
+                console.error('onDidRunGitCommand function is not available.');
+            }
+        } else {
+            console.error('Git extension not found.');
         }
-    });
+    });    
 
     let disposable = vscode.commands.registerCommand('TODO.helloWorld', function () {
         // Show the output channel and append "Hello World" to it
