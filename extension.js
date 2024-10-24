@@ -137,23 +137,25 @@ function activate(context) {
     const gitExtension = vscode.extensions.getExtension('vscode.git')?.exports;
     
     const api = gitExtension?.getAPI(1);
-    api?.onDidChangeState((e) => {
-      if (api.state == "initialized") {
-        console.log("SUPERB", api.repositories[1]);
-        console.log("HYPER", api.repositories);
-        if (api.repositories.length > 0) {
-          api.repositories[1].onDidChangeRepository(() => {
-            console.log("Repository changed");
-          });
+    console.log("TEST", api);
     
-          api.repositories[1].onDidCommit(() => {
-            console.log("committed");
-          });
-        } else {
-          console.warn("No repositories available yet");
-        }
-      }
-    })    
+    // api?.onDidChangeState((e) => {
+    //   if (api.state == "initialized") {
+    //     console.log("SUPERB", api.repositories[1]);
+    //     console.log("HYPER", api.repositories);
+    //     if (api.repositories.length > 0) {
+    //       api.repositories[1].onDidChangeRepository(() => {
+    //         console.log("Repository changed");
+    //       });
+    
+    //       api.repositories[1].onDidCommit(() => {
+    //         console.log("committed");
+    //       });
+    //     } else {
+    //       console.warn("No repositories available yet");
+    //     }
+    //   }
+    // })    
 
     let disposable = vscode.commands.registerCommand('TODO.check', function () {
         // Show the output channel and append "Hello World" to it
