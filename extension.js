@@ -22,7 +22,7 @@ function activate(context) {
     api?.onDidChangeState((e) => {
       if (api.state == "initialized") {
         console.log("WORKinitialized")
-        console.log("SUPERB", api.repositories);
+        console.log("SUPERB", api.repositories[0]);
         
         if (api.repositories.length > 0) {
           api.repositories[0].onDidChangeRepository(() => {
