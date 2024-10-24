@@ -5,6 +5,7 @@ const { searchCommentsInDirectory } = require('./commentFinder');
 // TODO: TEST1
 // FIXME: TEST2
 // Check this out: TEST3
+// TEST: TEST4
 
 
 // This method is called when your extension is activated
