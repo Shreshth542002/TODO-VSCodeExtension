@@ -1,6 +1,6 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const { searchCommentsInDirectory } = require('./commentFinder');
+const { searchCommentsInDirectory } = require('./utils/commentFinder');
 
 // TODO: TEST1
 // FIXME: TEST2
@@ -36,9 +36,7 @@ function activate(context) {
           console.warn("No repositories available yet");
         }
       }
-    })
-    console.log("TEST", api);
-    
+    })    
 
     let disposable = vscode.commands.registerCommand('TODO.helloWorld', function () {
         // Show the output channel and append "Hello World" to it

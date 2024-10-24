@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { extractCommentsFromFile } = require('./utils/commentExtractor'); // Import the new module
-const { isExcluded } = require('./utils/commentUtils');
+const { extractCommentsFromFile } = require('./commentExtractor'); // Import the new module
+const { isExcluded } = require('./commentUtils');
 
 /**
  * Recursively search for comments in all files within a directory
