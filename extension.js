@@ -155,7 +155,7 @@ function activate(context) {
       }
     })    
 
-    let disposable = vscode.commands.registerCommand('TODO.helloWorld', function () {
+    let disposable = vscode.commands.registerCommand('TODO.check', function () {
         // Show the output channel and append "Hello World" to it
 		const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders) {

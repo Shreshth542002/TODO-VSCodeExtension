@@ -13,8 +13,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "TODO.helloWorld",
-      "title": "Hello World"
+      "command": "TODO.check",
+      "title": "Check TODOs"
     }]
   },
   "scripts": {
